@@ -25,28 +25,25 @@ module.exports = {
       throw error;
     }
   },
-//   togglemoto: async (req, res) => {
-//     try {
-//       const { id } = req.params;
-//       if (!id) {
-//         return res.status(401).send({ message: "id is not send" });
-//       }
-//       const onemoto = await moto.findById(id);
-//       if (!onemoto) {
-//         return res
-//           .status(401)
-//           .send({ message: "moto doesn't exist in database" });
-//       }
+  togglemoto: async (req, res) => {
+    try {
+      const { id } = req.params;
+      if (!id) {
+        return res.status(401).send({ message: "id is not send" });
+      }
+      const onemoto = await moto.findOne({ where: { id: id } });
+      if (!onemoto) {
+        return res
+          .status(401)
+          .send({ message: "moto doesn't exist in database" });
+      }
 
-//       const updated = await moto.findOneAndUpdate(
-//         { _id: id },
-//         { completed: !onemoto.completed }
-//       );
-//       res.send({ message: "moto upadated", updated: updated });
-//     } catch (error) {
-//       throw error;
-//     }
-//   },
+      const updated = await moto.update({available: !onemoto.available },{where: { id: id }});
+      res.send({ message: "moto upadated", updated: updated });
+    } catch (error) {
+      throw error;
+    }
+  },
   addmoto: async (req, res) => {
     try {
       console.log("id inside addtod from verify token", req.user);

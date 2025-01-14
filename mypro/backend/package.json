@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cors": "^2.8.5",
     "cra-template": "1.2.0",
     "mysql2": "^3.12.0",
     "nodemon": "^3.1.9",
@@ -13,7 +14,6 @@
   },
   "scripts": {
     "server-dev": "npx nodemon server/index.js"
- 
   },
   "eslintConfig": {
     "extends": [

@@ -13,9 +13,8 @@ module.exports = (connection, DataTypes) => {
             type: DataTypes.STRING(500),
           },
           categorie: {
-            type: DataTypes.ENUM("Roadsters", "Routières", "sport","i dont know"),
+            type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: "i dont know",
           },
           price: {
               type: DataTypes.STRING,
@@ -24,7 +23,7 @@ module.exports = (connection, DataTypes) => {
             },
          available: {
           type: DataTypes.BOOLEAN,
-          defaultValue: false,
+          defaultValue: true,
           },
       },
     );

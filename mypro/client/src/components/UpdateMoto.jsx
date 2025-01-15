@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function UpdateMoto({currentmoto,handleUpdateTodo}) {
+function UpdateMoto({currentmoto,handleUpdatemoto}) {
   const [Image, setImage] = useState(currentmoto.Image);
   const [name, setName] = useState(currentmoto.name);
   const [description, setDescription] = useState(currentmoto.description);
@@ -83,7 +83,7 @@ function UpdateMoto({currentmoto,handleUpdateTodo}) {
         <div className="mb-3">
           <button
             onClick={() =>
-              handleUpdateTodo(currentmoto.id, { Image, name, description, categorie,price})
+              handleUpdatemoto(currentmoto.id, { Image, name, description, categorie,price})
             }
             type="button"
             className="btn btn-primary"

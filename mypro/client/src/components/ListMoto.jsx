@@ -2,25 +2,49 @@ import React from 'react'
 import OneMoto from './OneMoto';
 
 function listmoto({
-    usermoto,
+    moto,
     handleDelete,
     handleToggle,
     getCurrentmotoAndChnageView,
-}) {
-    console.log("moto in Listusermoto ", usermoto);
+    search,
+    newlist=[]
+}) 
+
+{
+    console.log("moto in Listmoto ", moto);
   return (
     <div className="container d-flex gap-3">
-      {usermoto.map((el) => {
+      {
+        !search ? (
+      moto.map((el) => {
         return (
           <OneMoto
           getCurrentmotoAndChnageView={getCurrentmotoAndChnageView}
             handleDelete={handleDelete}
             key={el.id}
-            usermoto={el}
+            moto={el}
             handleToggle={handleToggle}
           />
         );
-      })}
+      })
+    )
+      :
+          (
+            newlist.map((el) => {
+            return (
+              <OneMoto
+              getCurrentmotoAndChnageView={getCurrentmotoAndChnageView}
+                handleDelete={handleDelete}
+                key={el.id}
+                moto={el}
+                handleToggle={handleToggle}
+              />
+            )
+          })
+
+            
+          )
+      }
     </div>
   )
 }

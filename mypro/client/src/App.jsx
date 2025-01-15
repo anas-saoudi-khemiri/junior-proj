@@ -15,6 +15,8 @@ function App() {
   const [usermoto, setusermoto] = useState([]);
   const [view, setView] = useState("home");
   const [currentmoto, setCurrentmoto] = useState(null);
+  const [search, setSearch] = useState("")
+  const [newlist, setnewlist] = useState([]);
 
 
   const fetch = async () => {
@@ -105,17 +107,10 @@ function App() {
 
 
 
-  const handleUpdateTodo = async (id, updatedTodo) => {
+  const handleUpdatemoto = async (id, updatedmoto) => {
     // console.log("moto", moto);
     try {
-      // const token = localStorage.getItem("token");
-      const response = await axios.post(
-        "http://localhost:5000/api/user/",
-        // { Headers: { authorization: `Bearer ${token}` } }
-        // ,
-        moto
-      );
-      // console.log(response.data);
+      const response = await axios.put(`http://localhost:5000/api/moto/${id}`,updatedmoto)
       fetch();
       changeView("home");
     } catch (error) {
@@ -176,114 +171,132 @@ function App() {
 
 
 
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+    // console.log("search",search);
+      }
+
+
+useEffect(()=>{
+  if(search){
+    setnewlist(moto.filter((el)=>
+      el.name.toLowerCase().includes(search.toLowerCase())
+    ))
+  }else{
+    setnewlist(moto)
+  }
+},[search,moto])
 
   return (
-    <div>
-    {view === "home" ? (
-      <LoginOrSignup
-      changeView={changeView}
-      />
-    ) : 
-    view === "singup" ? 
-    (
-      <SignUp
-      handleAdduser={handleAdduser}
-      />
-    ) : 
-    view === "login" ?
-    (
-      <LogIn
-      handelgetoneuser={handelgetoneuser}
-      />
-    ) : 
-    view === "usermoto" ?
-    (
-      <Listmoto 
-      usermoto={usermoto}
-      handleToggle={handleToggle}
-      handleDelete={handleDelete}
-      getCurrentmotoAndChnageView={getCurrentmotoAndChnageView}
-      />
-    ) : 
-    // view === "addmoto" ? 
-    (
-      <AddMoto 
-      handleAddmoto={handleAddmoto} 
-      />
-    ) 
-    }
-  </div>
-
   //   <div>
-  //   <nav className="navbar navbar-expand-lg bg-body-tertiary">
-  //     <div className="container-fluid">
-  //       <a className="navbar-brand" onClick={() => changeView("home")}>
-  //         Navbar
-  //       </a>
-  //       <button
-  //         className="navbar-toggler"
-  //         type="button"
-  //         data-bs-toggle="collapse"
-  //         data-bs-target="#navbarSupportedContent"
-  //         aria-controls="navbarSupportedContent"
-  //         aria-expanded="false"
-  //         aria-label="Toggle navigation"
-  //       >
-  //         <span className="navbar-toggler-icon"></span>
-  //       </button>
-  //       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-  //         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-  //           <li className="nav-item">
-  //             <a
-  //               className="nav-link active"
-  //               aria-current="page"
-  //               onClick={() => changeView("home")}
-  //             >
-  //               Home
-  //             </a>
-  //           </li>
-  //           <li className="nav-item">
-  //             <a className="nav-link" onClick={() => changeView("addmoto")}>
-  //               Add task
-  //             </a>
-  //           </li>
-  //         </ul>
-  //         <form className="d-flex" role="search">
-  //           <input
-  //             className="form-control me-2"
-  //             type="search"
-  //             placeholder="Search"
-  //             aria-label="Search"
-  //           />
-  //           <button className="btn btn-outline-success" type="submit">
-  //             Search
-  //           </button>
-  //         </form>
-  //       </div>
-  //     </div>
-  //   </nav>
-  //   <div>
-  //     {view === "usermoto" ? (
-  //       <Listmoto 
-  //       usermoto={usermoto}
-  //       handleToggle={handleToggle}
-  //       handleDelete={handleDelete}
-  //       getCurrentmotoAndChnageView={getCurrentmotoAndChnageView}
-  //       />
-  //     ) : 
-  //     view === "addmoto" ? 
-  //     (
-  //       <AddMoto 
-  //       handleAddmoto={handleAddmoto} 
-  //       />
-  //     ) : (
-  //       <UpdateMoto
-  //       handleUpdateTodo={handleUpdateTodo}
-  //       currentmoto={currentmoto}
-  //       />
-  //     )}
-  //   </div>
+  //   {view === "home" ? (
+  //     <LoginOrSignup
+  //     changeView={changeView}
+  //     />
+  //   ) : 
+  //   view === "singup" ? 
+  //   (
+  //     <SignUp
+  //     handleAdduser={handleAdduser}
+  //     />
+  //   ) : 
+  //   view === "login" ?
+  //   (
+  //     <LogIn
+  //     handelgetoneuser={handelgetoneuser}
+  //     />
+  //   ) : 
+  //   view === "usermoto" ?
+  //   (
+  //     <Listmoto 
+  //     usermoto={usermoto}
+  //     handleToggle={handleToggle}
+  //     handleDelete={handleDelete}
+  //     getCurrentmotoAndChnageView={getCurrentmotoAndChnageView}
+  //     />
+  //   ) : 
+  //   // view === "addmoto" ? 
+  //   (
+  //     <AddMoto 
+  //     handleAddmoto={handleAddmoto} 
+  //     />
+  //   ) 
+  //   }
   // </div>
+
+    <div>
+    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container-fluid">
+        <a className="navbar-brand" onClick={() => changeView("home")}>
+          Navbar
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <a
+                className="nav-link active"
+                aria-current="page"
+                onClick={() => changeView("home")}
+              >
+                Home
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" onClick={() => changeView("addmoto")}>
+                Add task
+              </a>
+            </li>
+          </ul>
+          <form className="d-flex" role="search">
+            <input
+             onChange={handleSearch} 
+              className="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button className="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div>
+      {view === "home" ? (
+        <Listmoto 
+        moto={moto}
+        handleToggle={handleToggle}
+        handleDelete={handleDelete}
+        getCurrentmotoAndChnageView={getCurrentmotoAndChnageView}
+        search={search}
+        newlist={newlist}
+        />
+      ) : 
+      view === "addmoto" ? 
+      (
+        <AddMoto 
+        handleAddmoto={handleAddmoto} 
+        />
+      ) : (
+        <UpdateMoto
+        handleUpdatemoto={handleUpdatemoto}
+        currentmoto={currentmoto}
+        />
+      )}
+    </div>
+  </div>
   )
 }
 

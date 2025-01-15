@@ -2,37 +2,37 @@ import React from 'react'
 
 function OneMoto({
     handleToggle,
-    uesermoto,
+    moto,
     handleDelete,
     getCurrentmotoAndChnageView,
 }) {
   return (
     <div className="card" style={{ width: "18rem" }}>
-      <img src={uesermoto.Image} className="card-img-top" alt="..." />
+      <img src={moto.Image} className="card-img-top" alt="..." />
       <div className="card-body">
-        <h5 className="card-title">{uesermoto.name}</h5>
+        <h5 className="card-title">{moto.name}</h5>
         <div className="d-flex gap-1">
-          <p className="card-text">{uesermoto.description}</p>
+          <p className="card-text">{moto.description}</p>
         </div>
         <div className="d-flex gap-1">
-          <p className="card-text">{uesermoto.categorie}</p>
+          <p className="card-text">{moto.categorie}</p>
         </div>
         <div className="d-flex gap-1">
-          <p className="card-text">{uesermoto.price}</p>
+          <p className="card-text">{moto.price}</p>
         </div>
         <div>
           <input
             type="checkbox"
-            onChange={() => handleToggle(uesermoto.id)}
+            onChange={() => handleToggle(moto.id)}
             className=""
-            defaultChecked={uesermoto.completed}
+            defaultChecked={moto.completed}
           />
         </div>
-        <a onClick={() => handleDelete(uesermoto.id)} className="btn btn-primary">
+        <a onClick={() => handleDelete(moto.id)} className="btn btn-primary">
           delete{" "}
         </a>
         <a
-          onClick={() => getCurrentmotoAndChnageView("update", uesermoto)}
+          onClick={() => getCurrentmotoAndChnageView("update", moto)}
           className="btn btn-primary"
         >
           update{" "}

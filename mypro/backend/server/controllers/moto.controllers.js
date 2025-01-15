@@ -75,4 +75,16 @@ module.exports = {
       throw error;
     }
   },
+  getusermoto: async (req, res) => {
+    try {
+      const { user_Id } = req.params;
+      const motos = await moto.findAll({ where: { userId: user_Id } });
+      // if (!motos) {
+      //   return res.status(401).send({ message: "email doesn't exist in database" });
+      // }
+      res.send(motos);
+    } catch (error) {
+      throw error;
+    }
+  },
 };

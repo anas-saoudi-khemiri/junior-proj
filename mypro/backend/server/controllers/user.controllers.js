@@ -62,9 +62,7 @@ module.exports = {
       const { name,password,email}  = req.body;
       const body  = req.body;
       if (!body ){
-        res
-          .status(401)
-          .send({ message: "body are  not send" });
+        res.status(401).send({ message: "body are  not send" });
       }
       const { id } = req.params;
       const updated = await user.update( { name,password,email} 
@@ -74,6 +72,18 @@ module.exports = {
         }
       );
       res.status(201).send({ message: "user is updated successfully", updated });
+    } catch (error) {
+      throw error;
+    }
+  },
+  getoneusers: async (req, res) => {
+    try {
+      const { mail } = req.params;
+      const users = await user.findOne({ where: { email: mail } });
+      if (!users) {
+        return res.status(401).send({ message: "email doesn't exist in database" });
+      }
+      res.send(users);
     } catch (error) {
       throw error;
     }

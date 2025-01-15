@@ -3,6 +3,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import axios from 'axios'
+import LoginOrSignup from './components/LoginOrSignup'
+import SignUp from './components/SignUp'
+import LogIn from './components/LogIn'
 import Listmoto from "./components/listmoto"
 import AddMoto from './components/AddMoto'
 import UpdateMoto from './components/UpdateMoto'
@@ -19,13 +22,24 @@ function App() {
       throw error;
     }
   };
+
+
+  
   useEffect(() => {
     fetch();
   }, []);
+
+
+
+
   const changeView = (v) => {
     console.log("view", v);
     setView(v);
   }
+
+
+
+
   const handleToggle = async (id) => {
     console.log("id", id);
     try {
@@ -38,6 +52,10 @@ function App() {
       throw error;
     }
   }
+
+
+
+
   const handleDelete = async (id) => {
     console.log("id", id);
     try {
@@ -50,10 +68,18 @@ function App() {
       throw error;
     }
   };
+
+
+
+
   const getCurrentmotoAndChnageView = (v, moto) => {
     setView(v);
     setCurrentmoto(moto);
   };
+
+
+
+
   const handleAddmoto = async (moto) => {
     console.log("moto", moto);
     try {
@@ -71,12 +97,20 @@ function App() {
       throw error;
     }
   }
+
+
+
+
   const handleUpdateTodo = async (id, updatedTodo) => {
-    console.log("updatedTodosssssssssssss", updatedTodo);
-    console.log("iddddddddddddddd", id);
+    console.log("moto", moto);
     try {
-      const response = await axios.put(
-        `http://localhost:5000/api/moto/${id}`,updatedTodo);
+      // const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "http://localhost:5000/api/user/",
+        // { Headers: { authorization: `Bearer ${token}` } }
+        // ,
+        moto
+      );
       // console.log(response.data);
       fetch();
       changeView("home");
@@ -84,10 +118,69 @@ function App() {
       throw error;
     }
   }
+
+
+
+  
+
+  const handleAdduser = async (user) => {
+    console.log("user", user);
+    try {
+      // const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "http://localhost:5000/api/user/",
+        // { Headers: { authorization: `Bearer ${token}` } }
+        // ,
+        user
+      );
+      // console.log(response.data);
+      fetch();
+      changeView("home");
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
+  const handelgetoneuser = async (mail) => {
+    console.log("mail", mail);
+    try {
+      // const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "http://localhost:5000/api/user/",
+        // { Headers: { authorization: `Bearer ${token}` } }
+        // ,
+        mail
+      );
+      // console.log(response.data);
+      fetch();
+      changeView("home");
+    } catch (error) {
+      throw error;
+    }
+  }
+
   return (
     <div>
-      
-    </div>
+    {view === "home" ? (
+      <LoginOrSignup
+      changeView={changeView}
+      />
+    ) : 
+    view === "singup" ? 
+    (
+      <SignUp
+      handleAdduser={handleAdduser}
+      />
+    ) : 
+    // view === "login" 
+    (
+      <LogIn
+      handelgetoneuser={handelgetoneuser}
+      />
+    )}
+  </div>
+
   //   <div>
   //   <nav className="navbar navbar-expand-lg bg-body-tertiary">
   //     <div className="container-fluid">

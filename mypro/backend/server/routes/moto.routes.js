@@ -6,6 +6,7 @@ const {
   updatemoto,
   deletemoto,
   togglemoto,
+  getusermoto,
 } = require("../controllers/moto.controllers");
 // const verifyToken = require("../middlleware/auth");
 // Router.get("/", verifyToken, getAllmotos);
@@ -14,5 +15,6 @@ Router.post("/",addmoto);
 Router.put("/:id",updatemoto);
 Router.delete("/:id",deletemoto);
 Router.patch("/:id", togglemoto);
+Router.get("/:user_Id",getusermoto);
 
 module.exports = Router;

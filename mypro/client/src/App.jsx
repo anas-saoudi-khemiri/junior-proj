@@ -11,8 +11,12 @@ import AddMoto from './components/AddMoto'
 import UpdateMoto from './components/UpdateMoto'
 function App() {
   const [moto, setmoto] = useState([]);
+  const [user, setuser] = useState(0);
+  const [usermoto, setusermoto] = useState([]);
   const [view, setView] = useState("home");
   const [currentmoto, setCurrentmoto] = useState(null);
+
+
   const fetch = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/moto/");
@@ -41,12 +45,12 @@ function App() {
 
 
   const handleToggle = async (id) => {
-    console.log("id", id);
+    // console.log("id", id);
     try {
       const response = await axios.patch(
         `http://localhost:5000/api/moto/${id}`
       );
-      console.log(response.data);
+      // console.log(response.data);
       fetch();
     } catch (error) {
       throw error;
@@ -57,7 +61,7 @@ function App() {
 
 
   const handleDelete = async (id) => {
-    console.log("id", id);
+    // console.log("id", id);
     try {
       const response = await axios.delete(
         `http://localhost:5000/api/moto/${id}`
@@ -81,7 +85,7 @@ function App() {
 
 
   const handleAddmoto = async (moto) => {
-    console.log("moto", moto);
+    // console.log("moto", moto);
     try {
       // const token = localStorage.getItem("token");
       const response = await axios.post(
@@ -102,7 +106,7 @@ function App() {
 
 
   const handleUpdateTodo = async (id, updatedTodo) => {
-    console.log("moto", moto);
+    // console.log("moto", moto);
     try {
       // const token = localStorage.getItem("token");
       const response = await axios.post(
@@ -124,7 +128,7 @@ function App() {
   
 
   const handleAdduser = async (user) => {
-    console.log("user", user);
+    // console.log("user", user);
     try {
       // const token = localStorage.getItem("token");
       const response = await axios.post(
@@ -141,24 +145,37 @@ function App() {
     }
   }
 
+  const getmotoforoneuser = async (id) => {
+    console.log("id",id);
+    
+    try {
+      const response = await axios.get(`http://localhost:5000/api/moto/${id}`)
+      console.log(response.data);
+      setusermoto(response.data);
+    } catch (error) {
+      throw error;
+    }
+  };
 
   const handelgetoneuser = async (mail) => {
     console.log("mail", mail);
     try {
-      // const token = localStorage.getItem("token");
-      const response = await axios.post(
-        "http://localhost:5000/api/user/",
-        // { Headers: { authorization: `Bearer ${token}` } }
-        // ,
-        mail
-      );
-      // console.log(response.data);
-      fetch();
-      changeView("home");
+      const response = await axios.get(
+        `http://localhost:5000/api/user/${mail}`
+        );
+      console.log("helllooooooooooooooooooo",response.data.id);
+      setuser(response.data.id);
+      fetch()
+      getmotoforoneuser(user)
+      console.log("user 1",user);
+      changeView("usermoto");
     } catch (error) {
       throw error;
     }
   }
+
+
+
 
   return (
     <div>
@@ -173,12 +190,28 @@ function App() {
       handleAdduser={handleAdduser}
       />
     ) : 
-    // view === "login" 
+    view === "login" ?
     (
       <LogIn
       handelgetoneuser={handelgetoneuser}
       />
-    )}
+    ) : 
+    view === "usermoto" ?
+    (
+      <Listmoto 
+      usermoto={usermoto}
+      handleToggle={handleToggle}
+      handleDelete={handleDelete}
+      getCurrentmotoAndChnageView={getCurrentmotoAndChnageView}
+      />
+    ) : 
+    // view === "addmoto" ? 
+    (
+      <AddMoto 
+      handleAddmoto={handleAddmoto} 
+      />
+    ) 
+    }
   </div>
 
   //   <div>
@@ -230,9 +263,9 @@ function App() {
   //     </div>
   //   </nav>
   //   <div>
-  //     {view === "home" ? (
+  //     {view === "usermoto" ? (
   //       <Listmoto 
-  //       moto={moto}
+  //       usermoto={usermoto}
   //       handleToggle={handleToggle}
   //       handleDelete={handleDelete}
   //       getCurrentmotoAndChnageView={getCurrentmotoAndChnageView}

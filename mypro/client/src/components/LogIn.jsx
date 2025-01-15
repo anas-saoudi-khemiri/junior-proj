@@ -37,11 +37,11 @@ function LogIn({handelgetoneuser}) {
     <div className="mb-3">
       <div className="mb-3">
         <button
-          onClick={() => handelgetoneuser({password, email})}
+          onClick={() => handelgetoneuser(email)}
           type="button"
           className="btn btn-primary"
         >
-          Sing Up
+          Log In
         </button>
       </div>
     </div>

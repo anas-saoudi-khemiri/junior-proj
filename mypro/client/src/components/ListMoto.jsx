@@ -2,21 +2,21 @@ import React from 'react'
 import OneMoto from './OneMoto';
 
 function listmoto({
-    moto,
+    usermoto,
     handleDelete,
     handleToggle,
     getCurrentmotoAndChnageView,
 }) {
-    console.log("moto in Listmoto ", moto);
+    console.log("moto in Listusermoto ", usermoto);
   return (
     <div className="container d-flex gap-3">
-      {moto.map((el) => {
+      {usermoto.map((el) => {
         return (
           <OneMoto
           getCurrentmotoAndChnageView={getCurrentmotoAndChnageView}
             handleDelete={handleDelete}
             key={el.id}
-            moto={el}
+            usermoto={el}
             handleToggle={handleToggle}
           />
         );

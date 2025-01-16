@@ -223,12 +223,11 @@ useEffect(()=>{
   //   ) 
   //   }
   // </div>
-
-    <div>
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <div >
+    <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top ">
       <div className="container-fluid">
         <a className="navbar-brand" onClick={() => changeView("home")}>
-          Navbar
+          moto
         </a>
         <button
           className="navbar-toggler"

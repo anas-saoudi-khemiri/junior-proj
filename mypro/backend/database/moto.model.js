@@ -3,7 +3,7 @@ module.exports = (connection, DataTypes) => {
       "moto",
       {
         Image: {
-            type: DataTypes.STRING(500),
+            type: DataTypes.STRING(10000),
           },
           name: {
             type: DataTypes.STRING,

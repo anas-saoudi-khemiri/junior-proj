@@ -40,3 +40,124 @@
 .read-the-docs {
   color: #888;
 }
+
+.btn-primary{
+  margin: 10px 5px;
+}
+
+body{
+  background-color: rgba(101, 99, 99, 0.216);
+}
+.navbar{
+  background-color: rgba(255, 255, 255, 0.135);
+}
+a.nav-link{
+  color: #ffffff;
+}
+
+div.d-flex.gap-1{
+  margin: 0px 0px 0px;
+}
+p.card-text{
+  margin: 0px 0px 0px;
+}
+a.navbar-brand{
+  color: #ffffff46;
+}
+.btn-outline-success{
+  color: #ffffff;
+}
+div.card{
+  margin: 10px 5px;
+  color: #000000;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+
+  
+}
+img.card.img-top {
+  border-radius: 5px 5px 0 0;
+}
+
+
+
+
+
+
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  margin-bottom: 20px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.card-actions button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.card-actions .btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.card-actions .btn-delete:hover {
+  background-color: #c82333;
+}
+
+.card-actions .btn-update {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.card-actions .btn-update:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
+
+

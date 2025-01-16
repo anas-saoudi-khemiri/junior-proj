@@ -87,15 +87,8 @@ function App() {
 
 
   const handleAddmoto = async (moto) => {
-    // console.log("moto", moto);
     try {
-      // const token = localStorage.getItem("token");
-      const response = await axios.post(
-        "http://localhost:5000/api/moto/",
-        // { Headers: { authorization: `Bearer ${token}` } }
-        // ,
-        moto
-      );
+      const response = await axios.post("http://localhost:5000/api/moto/",moto);
       // console.log(response.data);
       fetch();
       changeView("home");
